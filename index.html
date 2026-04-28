@@ -1,134 +1,20 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>English Escape Room</title>
-<style>
-body { font-family: Arial; background:#1e1e2f; color:white; text-align:center; }
-.box { background:#2c2c3e; padding:20px; margin:50px auto; width:60%; border-radius:10px; }
-button { padding:10px 20px; margin:10px; cursor:pointer; }
-</style>
-</head>
-
-<body>
-
-<div class="box">
-<h1>🔐 The Missing Manuscript</h1>
-
-<p id="story">Press Start to begin your mission...</p>
-
-<h2 id="timer">Time: 30:00</h2>
-<h3 id="progress">Progress: 0 / 20</h3>
-<h3 id="room">Room 1</h3>
-
-<p id="question"></p>
-<div id="answers"></div>
-
-<button onclick="startGame()">Start</button>
-
-</div>
-
-<script>
-
-let questions = [
-{q:"Their/There going home.", a:"They're", options:["Their","There","They're"]},
-{q:"Synonym of happy?", a:"Joyful", options:["Sad","Joyful","Angry"]},
-{q:"Past tense of run?", a:"Ran", options:["Run","Runned","Ran"]},
-{q:"Correct spelling?", a:"Because", options:["Beacause","Because","Becuse"]},
-{q:"Opposite of big?", a:"Small", options:["Big","Small","Tall"]},
-{q:"She ___ going.", a:"is", options:["are","is","be"]},
-{q:"Plural of child?", a:"Children", options:["Childs","Children","Childes"]},
-{q:"Which is a verb?", a:"Run", options:["Blue","Run","Happy"]},
-{q:"Correct sentence?", a:"He doesn't like apples", options:["He don't like apples","He doesn't like apples","He not like apples"]},
-{q:"Synonym of fast?", a:"Quick", options:["Slow","Quick","Late"]},
-{q:"Opposite of hot?", a:"Cold", options:["Warm","Cold","Cool"]},
-{q:"I ___ eaten.", a:"have", options:["has","have","had"]},
-{q:"Which is a noun?", a:"Dog", options:["Run","Dog","Quickly"]},
-{q:"They ___ playing.", a:"are", options:["is","are","was"]},
-{q:"Opposite of early?", a:"Late", options:["Late","Soon","Quick"]},
-{q:"Synonym of smart?", a:"Intelligent", options:["Fast","Intelligent","Big"]},
-{q:"He ___ to school yesterday.", a:"went", options:["go","went","gone"]},
-{q:"Your/You're amazing.", a:"You're", options:["Your","You're"]},
-{q:"Plural of mouse?", a:"Mice", options:["Mouses","Mice","Mouse"]},
-{q:"Opposite of strong?", a:"Weak", options:["Weak","Hard","Big"]}
-];
-
-let score = 0;
-let timeLeft = 1800;
-let timer;
-let current;
-
-function startGame() {
-score = 0;
-timeLeft = 1800;
-shuffleQuestions();
-updateProgress();
-nextQuestion();
-clearInterval(timer);
-timer = setInterval(updateTimer, 1000);
-
-document.getElementById("story").innerText =
-"Find the stolen manuscript by solving all 20 challenges!";
-}
-
-function shuffleQuestions() {
-questions.sort(() => Math.random() - 0.5);
-}
-
-function nextQuestion() {
-if (score >= 20) {
-document.getElementById("question").innerText =
-"🎉 You escaped and recovered the manuscript!";
-document.getElementById("answers").innerHTML = "";
-clearInterval(timer);
-return;
-}
-
-let roomNum = Math.floor(score / 5) + 1;
-document.getElementById("room").innerText = "Room " + roomNum;
-
-current = questions[Math.floor(Math.random() * questions.length)];
-document.getElementById("question").innerText = current.q;
-
-let html = "";
-current.options.forEach(opt => {
-html += `<button onclick=\"checkAnswer('${opt}')\">${opt}</button>`;
-});
-
-document.getElementById("answers").innerHTML = html;
-}
-
-function checkAnswer(answer) {
-if (answer === current.a) {
-score++;
-updateProgress();
-}
-nextQuestion();
-}
-
-function updateProgress() {
-document.getElementById("progress").innerText =
-"Progress: " + score + " / 20";
-}
-
-function updateTimer() {
-timeLeft--;
-
-let minutes = Math.floor(timeLeft / 60);
-let seconds = timeLeft % 60;
-
-document.getElementById("timer").innerText =
-"Time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-
-if (timeLeft <= 0) {
-clearInterval(timer);
-alert("⏳ Time's up! Restarting...");
-startGame();
-}
-}
-
-</script>
-
-</body>
-</html>
+1. Define a sesquipedalian word and use it in a complex sentence.
+2. Construct a sentence using the subjunctive mood to express a hypothetical situation.
+3. Identify and explain the use of a metaphor in your favorite poem.
+4. Create a complex sentence that includes an oxymoron.
+5. What is zeugma? Provide an example in a sentence.
+6. Write a sentence that demonstrates advanced vocabulary related to the theme of nature.
+7. Identify a literary device used in Shakespeare's "Hamlet" and explain its significance.
+8. Create a sentence that uses alliteration effectively.
+9. Use an advanced adjective to describe a mundane object in an engaging way.
+10. Create a complex sentence that includes a subordinate clause.
+11. Explain the use of enjambment in contemporary poetry with an example.
+12. Write a sentence employing a hyperbole and analyze its effect.
+13. Discuss the significance of irony in "Pride and Prejudice."
+14. Write a sentence that features a simile and illustrate its comparison.
+15. Create a complex sentence using both a metaphor and a simile.
+16. Discuss the impact of diction in conveying tone in literature.
+17. Write a detailed sentence that utilizes personification.
+18. Create an exercise where students must identify the rhetorical devices used in a given passage.
+19. Formulate a question that requires critical thinking about the theme of identity in poetry.
+20. Explain how allusion enriches texts by referencing historical or cultural elements.
